@@ -501,7 +501,7 @@ class Camera:
 class CameraSynchronizer:
   def __init__(self, forearm=True):
     stereo_camera_names = [ "narrow_stereo", "wide_stereo" ] # narrow must be first as it can be alternate, and hence has more period restrictions. 
-    forearm_camera_names = [ "forearm_r", "forearm_l" ]
+    forearm_camera_names = [ "forearm_l" ]
     self.camera_names = stereo_camera_names
     if forearm:
         self.camera_names = self.camera_names + forearm_camera_names
@@ -528,7 +528,6 @@ class CameraSynchronizer:
       DualCameraTriggerController('head_camera_trigger', *[self.cameras[name] for name in stereo_camera_names])]
     if forearm:
       self.controllers = self.controllers + [
-          SingleCameraTriggerController('r_forearm_cam_trigger', self.cameras["forearm_r"]),
           SingleCameraTriggerController('l_forearm_cam_trigger', self.cameras["forearm_l"]),
         ]
 
