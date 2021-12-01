@@ -694,11 +694,11 @@ static pthread_t controlThread;
 static pthread_attr_t controlThreadAttr;
 int main(int argc, char *argv[])
 {
-  // Keep the kernel from swapping us out
-  if (mlockall(MCL_CURRENT | MCL_FUTURE) < 0) {
-    perror("mlockall");
-    return -1;
-  }
+//  // Keep the kernel from swapping us out
+//  if (mlockall(MCL_CURRENT | MCL_FUTURE) < 0) {
+//    perror("mlockall");
+//    return -1;
+//  }
 
   // Initialize ROS and parse command-line arguments
   ros::init(argc, argv, "realtime_loop");
