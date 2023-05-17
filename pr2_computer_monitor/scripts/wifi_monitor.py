@@ -110,6 +110,9 @@ class WifiMonitor(object):
                 ddwrt_stat = wifi_to_diag(self._last_msg)
 
                 update_diff = rospy.get_time() - self._last_update_time
+                if not self._last_msg.macaddr:
+                    ddwrt_stat.level = DiagnosticStatus.WARN
+                    ddwrt_stat.message = "Not connected to configured network '{}'".format(self._last_msg.essid)
                 if update_diff > WARN_TIME:
                     ddwrt_stat = mark_diag_stale(ddwrt_stat)
                 if (rospy.get_time() - self._last_update_time) > ERROR_TIME:
